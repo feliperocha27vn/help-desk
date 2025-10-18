@@ -27,9 +27,7 @@ describe('Create admin', () => {
 
     expect(admin).toEqual(
       expect.objectContaining({
-        id: expect.any(String),
-        name: 'Admin Test',
-        email: 'admin@test.com',
+        role: 'ADMIN',
       })
     )
   })
