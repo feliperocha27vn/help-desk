@@ -21,7 +21,7 @@ describe('Create admin', () => {
 
     expect(reply.statusCode).toEqual(201)
 
-    const admin = await prisma.admins.findFirstOrThrow({
+    const admin = await prisma.users.findFirstOrThrow({
       where: { email: 'admin@test.com' },
     })
 

@@ -1,5 +1,5 @@
-import { EmailAlreadyExistsError } from '@/errors/email-already-exists'
-import { createNewAdmin } from '@/functions/admins/create-new-admin'
+import { EmailAlreadyExistsError } from '@/errors/email-already-exists-error'
+import { createNewAdminFunction } from '@/functions/admins/create-new-admin'
 import type { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
 import z from 'zod'
 
@@ -28,7 +28,7 @@ export const createNewAdmion: FastifyPluginAsyncZod = async app => {
       const { name, email, password } = request.body
 
       try {
-        await createNewAdmin({ name, email, password })
+        await createNewAdminFunction({ name, email, password })
 
         return reply.status(201).send()
       } catch (error) {

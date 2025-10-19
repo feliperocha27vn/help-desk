@@ -1,19 +1,19 @@
 import { hash } from 'bcrypt'
-import { EmailAlreadyExistsError } from '../../errors/email-already-exists'
+import { EmailAlreadyExistsError } from '../../errors/email-already-exists-error'
 import { prisma } from '../../lib/prisma'
 
-interface CreateNewAdminRequest {
+interface CreateNewAdminFunctionRequest {
   name: string
   email: string
   password: string
 }
 
-export async function createNewAdmin({
+export async function createNewAdminFunction({
   name,
   email,
   password,
-}: CreateNewAdminRequest) {
-  const isEmailUnique = await prisma.admins.findUnique({
+}: CreateNewAdminFunctionRequest) {
+  const isEmailUnique = await prisma.users.findUnique({
     where: { email },
   })
 
@@ -23,11 +23,12 @@ export async function createNewAdmin({
 
   const passwordHash = await hash(password, 6)
 
-  await prisma.admins.create({
+  await prisma.users.create({
     data: {
       name,
       email,
       passwordHash,
+      role: 'ADMIN',
     },
   })
 }

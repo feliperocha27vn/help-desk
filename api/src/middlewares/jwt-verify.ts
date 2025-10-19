@@ -1,9 +1,9 @@
-import { app } from '../app'
+import type { FastifyReply, FastifyRequest } from 'fastify'
 
-app.addHook('onRequest', async (request, reply) => {
+export async function verifyJwt(request: FastifyRequest, reply: FastifyReply) {
   try {
     await request.jwtVerify()
-  } catch {
-    reply.status(401).send({ message: 'Unauthorized' })
+  } catch (err) {
+    return reply.status(401).send({ message: 'Unauthorized.' })
   }
-})
+}

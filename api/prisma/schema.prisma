@@ -13,14 +13,14 @@ enum Role {
   CUSTOMER
 }
 
-model Admins {
+model Users {
   id           String   @id @default(uuid())
   name         String
   email        String   @unique
   passwordHash String   @map("password_hash")
-  role         Role     @default(ADMIN)
+  role         Role
   createdAt    DateTime @default(now()) @map("created_at")
   updatedAt    DateTime @updatedAt @map("updated_at")
 
-  @@map("admins")
+  @@map("users")
 }
