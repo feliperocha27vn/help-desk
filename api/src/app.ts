@@ -10,6 +10,7 @@ import {
 import { env } from './env'
 import { adminsRoutes } from './http/controllers/admins/routes'
 import { authRoutes } from './http/controllers/auth/routes'
+import { technicalsRoutes } from './http/controllers/technicals/routes'
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -32,3 +33,4 @@ app.register(fastifyCookie)
 
 app.register(adminsRoutes)
 app.register(authRoutes)
+app.register(technicalsRoutes)
